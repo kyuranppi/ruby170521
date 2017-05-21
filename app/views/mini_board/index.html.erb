@@ -1,0 +1,30 @@
+<div class="container">
+    <%= render :partial => 'logbar' %>
+    <form action="/mini_board/create" method="get">
+        <div class="form-group">
+            <input class="form-control" value=<%= @user %>></input>
+           <textarea name="content" class="form-control" rows="10"> </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+</div>
+
+<div class="container post-container">
+    <% @posts.each do |post| %>
+    <article class="posts">
+        <p class="posts-writer-name">writer: <%= post.writer %></p>
+        <p class="posts-title">content : </p>
+        <span class="posts-content"><%= post.content %></span>
+        <form action="/mini_board/comment_create" method="get">
+                <div class="form-group">
+                <input name="post_id" value="<%= post.id %>" type="hidden"></input>
+               <textarea name="content" class="form-control" rows="1"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+      <% post.comments.each do |comment| %>
+          <p class="comment"><%= comment.content %></p>
+      <% end %>
+    </article>
+    <% end %>
+</div>

@@ -1,0 +1,2 @@
+module MiniBoardHelper
+end
